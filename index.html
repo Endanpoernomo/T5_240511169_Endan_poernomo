@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="id" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TugasKu — Aplikasi To-Do List</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="container">
+      <!-- Header & Theme Toggle -->
+      <header class="app-header">
+        <div class="brand">
+          <div class="brand-icon" aria-hidden="true">✓</div>
+          <div>
+            <h1>TugasKu</h1>
+            <p class="subtitle">Kelola prioritas & tenggat harianmu</p>
+          </div>
+        </div>
+        <button
+          id="themeToggle"
+          class="icon-btn"
+          type="button"
+          aria-label="Ganti tema"
+          title="Ganti Tema Terang/Gelap"
+        >
+          <span id="themeIcon">🌙</span>
+        </button>
+      </header>
+
+      <!-- Form Tambah Tugas -->
+      <section class="card form-card" aria-label="Tambah Tugas Baru">
+        <form id="todoForm" class="todo-form">
+          <div class="input-row">
+            <input
+              type="text"
+              id="todoInput"
+              placeholder="Apa yang perlu dikerjakan hari ini?"
+              autocomplete="off"
+              required
+            />
+            <button type="submit" class="btn-primary">
+              <span>+ Tambah</span>
+            </button>
+          </div>
+          <div class="meta-row">
+            <label class="field-group">
+              <span>Prioritas</span>
+              <select id="priorityInput">
+                <option value="sedang" selected>Sedang</option>
+                <option value="tinggi">Tinggi</option>
+                <option value="rendah">Rendah</option>
+              </select>
+            </label>
+            <label class="field-group">
+              <span>Tenggat</span>
+              <input type="date" id="dueDateInput" />
+            </label>
+          </div>
+        </form>
+      </section>
+
+      <!-- Kontrol Pencarian, Filter & Urutan -->
+      <section class="card controls-card" aria-label="Filter dan Pencarian">
+        <div class="search-box">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Cari nama tugas..."
+            autocomplete="off"
+          />
+        </div>
+
+        <div class="filter-bar">
+          <div
+            class="status-tabs"
+            role="tablist"
+            aria-label="Filter status tugas"
+          >
+            <button type="button" class="tab-btn active" data-filter="semua">
+              Semua
+            </button>
+            <button type="button" class="tab-btn" data-filter="aktif">
+              Aktif
+            </button>
+            <button type="button" class="tab-btn" data-filter="selesai">
+              Selesai
+            </button>
+          </div>
+
+          <div class="select-controls">
+            <select
+              id="priorityFilter"
+              aria-label="Filter berdasarkan prioritas"
+            >
+              <option value="semua">Semua Prioritas</option>
+              <option value="tinggi">Prioritas: Tinggi</option>
+              <option value="sedang">Prioritas: Sedang</option>
+              <option value="rendah">Prioritas: Rendah</option>
+            </select>
+
+            <select id="sortSelect" aria-label="Urutkan tugas">
+              <option value="terbaru">Urut: Terbaru</option>
+              <option value="prioritas">Urut: Prioritas Tertinggi</option>
+              <option value="tenggat">Urut: Tenggat Terdekat</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Daftar Tugas -->
+      <section class="card list-card" aria-label="Daftar Tugas">
+        <ul id="todoList" class="todo-list"></ul>
+
+        <!-- Tampilan Kosong -->
+        <div id="emptyState" class="empty-state hidden">
+          <div class="empty-illustration" aria-hidden="true">📋</div>
+          <h2 id="emptyTitle">Belum ada tugas</h2>
+          <p id="emptyDesc">
+            Tambahkan tugas pertamamu di atas atau muat contoh tugas untuk
+            mencoba fitur.
+          </p>
+          <button type="button" id="loadSampleBtn" class="btn-secondary">
+            Muat Contoh Tugas
+          </button>
+        </div>
+
+        <!-- Footer Statistik & Aksi Massal -->
+        <footer class="list-footer">
+          <div class="stats" aria-live="polite">
+            <span>Total: <strong id="totalCount">0</strong></span>
+            <span class="dot">•</span>
+            <span>Aktif: <strong id="activeCount">0</strong></span>
+            <span class="dot">•</span>
+            <span>Selesai: <strong id="completedCount">0</strong></span>
+          </div>
+          <button
+            type="button"
+            id="clearCompletedBtn"
+            class="btn-ghost"
+            disabled
+          >
+            Hapus Selesai
+          </button>
+        </footer>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
